@@ -30,7 +30,7 @@ const CarContainer = props => {
     })
   }
   return (
-    <div class='content'>
+    <div className='content'>
       <div className='content__header'>
         <h1>Carrental App</h1>
         <div className='content__header__buttons'>
@@ -48,7 +48,7 @@ const CarContainer = props => {
           </select>
         </div>
       </div>
-      <div className=''>
+      <div className='content__carArea'>
         {allCars}
       </div>
     </div>

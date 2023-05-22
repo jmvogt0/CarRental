@@ -30,3 +30,7 @@
   height: 50px;
   background-color: red;
 }
+
+.content__carArea {
+  display: flex;
+}
