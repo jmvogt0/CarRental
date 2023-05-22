@@ -13,7 +13,6 @@ const CarCard = car => {
         <p>PS: {car.car.horsepower}</p>
         <p>Gewicht: {car.car.weight}</p>
         <p>Türen: {car.car.doors}</p>
-        <p>Beschreibung: {car.car.description}</p>
       </a>
     </div>
   );

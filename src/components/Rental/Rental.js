@@ -60,6 +60,7 @@ const Rental = props => {
     console.log(rentalObj);
     axios.post("/carrental/rental/", rentalObj)
     .then((res) => {
+      window.location.replace("./");
       console.log(res);
     }).catch((err) => {
       console.log(err);
