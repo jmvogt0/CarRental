@@ -1,11 +1,11 @@
 import { useState } from 'react';
-
+import axios from '../../../src/axiosUrl'
 import './Rental.css';
 
 const Rental = props => {
   const [price, setPrice] = useState(0);
   const [brand, setBrand] = useState("");
-  const [carModel, setCarModel] = useState("");
+  const [carmodel, setCarModel] = useState("");
   const [kilometers, setKilometers] = useState(0);
   const [horsepower, sethorsepower] = useState(0);
   const [weight, setWeight] = useState(0);
@@ -44,9 +44,11 @@ const Rental = props => {
 
   const onSave=()=> {
     let rentalObj = {
+      owner: "646b65be26cf7e1b72c40f22",
+      cartype: "646b75150bcdca0fdefca3d7",
       price,
       brand,
-      carModel,
+      carmodel,
       kilometers,
       horsepower,
       weight,
@@ -56,13 +58,12 @@ const Rental = props => {
       href,
     }
     console.log(rentalObj);
-    /*
-    axios.post("/rental", rentalObj)
+    axios.post("/carrental/rental/", rentalObj)
     .then((res) => {
       console.log(res);
     }).catch((err) => {
       console.log(err);
-    }) */
+    })
   }
 
   return (
@@ -73,7 +74,7 @@ const Rental = props => {
       <p>Marke</p>
       <input type="text" value={brand} onChange={onBrandChange}/>
       <p>Modell</p>
-      <input type="text" value={carModel} onChange={onCarModelChange}/>
+      <input type="text" value={carmodel} onChange={onCarModelChange}/>
       <p>Kilometer</p>
       <input type="number" value={kilometers} onChange={onKilometerChange}/>
       <p>Leistung</p>

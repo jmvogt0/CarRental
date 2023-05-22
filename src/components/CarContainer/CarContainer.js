@@ -1,57 +1,25 @@
 import './CarContainer.css'
 import CarCard from "../CarCard/CarCard";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from '../../../src/axiosUrl';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadCars } from '../../reducer/reducer';
 
 const CarContainer = props => {
-  const [cars, setCars] = useState(
-    [
-      {
-        "tags": [
-          "twingo"
-        ],
-        "_id": "63f5f3df2c3d640ed920c825",
-        "cartype": "63f5e6b15538a309aa629b05",
-        "price": 122.99,
-        "brand": "Renault",
-        "carmodel": "Twingo",
-        "kilometers": 12123,
-        "horsepower": 180,
-        "weight": 1333,
-        "doors": 5,
-        "active": true,
-        "description": "Top Zustand Renault Twingo zu mieten",
-        "href": "https://images.ctfassets.net/uaddx06iwzdz/6zH7BXMBdZUq6ZKPnoMfSQ/cebd7c016a6c1ca9d7dd44ad96e05e2c/bmw-118-l-02.jpg",
-        "_v": 0,
-        "owner": "63d5eb0dda7d50c4b96d78e",
-        "rentedLength": 0,
-      },
-      {
-        "tags": [
-          "3er"
-        ],
-        "_id": "63f5f3df2c3d640ed920c823",
-        "cartype": "63f5e6b15538a309aa629b05",
-        "price": 200.99,
-        "brand": "BMW",
-        "carmodel": "3er",
-        "kilometers": 23623,
-        "horsepower": 300,
-        "weight": 2000,
-        "doors": 5,
-        "active": true,
-        "description": "Top Zustand BMW 3er zu mieten",
-        "href": "https://images.ctfassets.net/uaddx06iwzdz/6zH7BXMBdZUq6ZKPnoMfSQ/cebd7c016a6c1ca9d7dd44ad96e05e2c/bmw-118-l-02.jpg",
-        "_v": 0,
-        "owner": "63d5eb0dda7d50c4b96d78e",
-        "rentedLength": 0,
-      }
-    ]);
+  const cars = useSelector((state) => {return state.cars})
+  console.log(cars);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadCars())
+  },[loadCars])
 
   let allCars = null;
-  allCars = cars.map((v, i) => {
-    return <CarCard car={v} key={v._id} />;
-  })
+  if (cars?.length > 0) {
+    allCars = cars.map((v, i) => {
+      return <CarCard car={v} key={v._id} />;
+    })
+  }
 
   const onLogout = () => {
     axios.post("/logout")
@@ -62,9 +30,27 @@ const CarContainer = props => {
     })
   }
   return (
-    <div>
-      <button onClick={onLogout}>Logout</button>
-      {allCars}
+    <div class='content'>
+      <div className='content__header'>
+        <h1>Carrental App</h1>
+        <div className='content__header__buttons'>
+          <a href="/login" className='content__header__buttons__loginBtn'>Login</a>
+          <button className='content__header__buttons__logoutBtn' onClick={onLogout}>Logout</button>
+        </div>
+      </div>
+      <div className='content__filters'>
+        <div>
+          <input type="text" placeholder='Suche'/>
+          <select name="Kategorie" id="1">
+            <option value="Limousine">Limousine</option>
+            <option value="Cabrio">Cabrio</option>
+            <option value="Sportwagen">Sportwagen</option>
+          </select>
+        </div>
+      </div>
+      <div className=''>
+        {allCars}
+      </div>
     </div>
   );
 }
