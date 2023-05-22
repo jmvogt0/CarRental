@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Login.css';
 import axios from '../../../src/axiosUrl';
+import { redirect } from 'react-router-dom';
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -19,6 +20,7 @@ const Login = props => {
       password,})
     .then((res)=>{
       console.log(res);
+      window.location.replace("./");
     }).catch((err)=>{
       console.log(err);
     });
