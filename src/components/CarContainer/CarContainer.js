@@ -53,6 +53,7 @@ const CarContainer = props => {
   })
   return (
     <div>
+      <a href="">Logout</a>
       {allCars}
     </div>
   );

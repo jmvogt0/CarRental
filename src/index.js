@@ -7,10 +7,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import CarDetail from './components/CarDetail/CarDetail';
 import CarContainer from './components/CarContainer/CarContainer';
+import Rental from './components/Rental/Rental';
+import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
 
 const router = createBrowserRouter([
   {
-    path:'/carrental/',
+    path:'/',
     element: <App />,
     children: [
       {
@@ -18,8 +21,20 @@ const router = createBrowserRouter([
       element: <CarContainer />
       },
       {
-        path:'/carrental/car/:rentalId',
+        path:'/login',
+        element: <Login />,
+      },
+      {
+        path:'/signUp',
+        element: <SignUp />,
+      },
+      {
+        path:'/cars/:rentalId',
         element: <CarDetail />,
+      },
+      {
+        path:'/newRental',
+        element: <Rental />,
       },
     ]
   }
