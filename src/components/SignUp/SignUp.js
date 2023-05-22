@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './SignUp.css';
+import axios from '../../../src/axiosUrl';
 
 const Register = props => {
   const [firstname, setFirstname] = useState("");
@@ -40,8 +41,8 @@ const Register = props => {
     setEmail(e.target.value);
   }
 
-  const onSave=()=> {
-    let signUpObj = {
+  const onSignup = () => {
+    axios.post("/signup/", {
       firstname,
       lastname,
       street,
@@ -50,16 +51,12 @@ const Register = props => {
       country,
       phone,
       password,
-      email,
-    }
-    console.log(signUpObj);
-    /*
-    axios.post("/rental", rentalObj)
-    .then((res) => {
+      email,})
+    .then((res)=>{
       console.log(res);
-    }).catch((err) => {
+    }).catch((err)=>{
       console.log(err);
-    }) */
+    });
   }
 
   return (
@@ -83,7 +80,7 @@ const Register = props => {
       <input type="password" value={password} onChange={onPasswordChange} />
       <p>Email</p>
       <input type="email" value={email} onChange={onEmailChange}/>
-      <button onClick={onSave}>Registrieren</button>
+      <button onClick={onSignup}>Registrieren</button>
     </div>
   );
 }

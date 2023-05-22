@@ -1,6 +1,7 @@
 import './CarContainer.css'
 import CarCard from "../CarCard/CarCard";
 import { useState } from 'react';
+import axios from '../../../src/axiosUrl';
 
 const CarContainer = props => {
   const [cars, setCars] = useState(
@@ -51,9 +52,18 @@ const CarContainer = props => {
   allCars = cars.map((v, i) => {
     return <CarCard car={v} key={v._id} />;
   })
+
+  const onLogout = () => {
+    axios.post("/logout")
+    .then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <div>
-      <a href="">Logout</a>
+      <button onClick={onLogout}>Logout</button>
       {allCars}
     </div>
   );

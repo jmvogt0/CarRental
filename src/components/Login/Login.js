@@ -1,40 +1,37 @@
 import { useState } from 'react';
 import './Login.css';
+import axios from '../../../src/axiosUrl';
 
 const Login = props => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onUsernameChange = e => {
-    setUsername(e.target.value);
+  const onEmailChange = e => {
+    setEmail(e.target.value);
   }
   const onPasswordChange = e => {
     setPassword(e.target.value);
   }
 
-  const onSave=()=> {
-    let loginObj = {
-      username,
-      password,
-    }
-    console.log(loginObj);
-    /*
-    axios.post("/rental", rentalObj)
-    .then((res) => {
+  const onLogin=()=> {
+    axios.post("/login", {
+      email,
+      password,})
+    .then((res)=>{
       console.log(res);
-    }).catch((err) => {
+    }).catch((err)=>{
       console.log(err);
-    }) */
+    });
   }
 
   return (
     <div>
       <p>Login</p>
       <p>Username:</p>
-      <input type="text" value={username} onChange={onUsernameChange} />
+      <input type="text" value={email} onChange={onEmailChange} />
       <p>Passwort:</p>
       <input type="password" value={password} onChange={onPasswordChange} />
-      <button onClick={onSave}>Login</button>
+      <button onClick={onLogin}>Login</button>
       <p>Noch keinen Account? <a href="/signUp">sign up</a></p>
     </div>
   );
