@@ -21,7 +21,7 @@ const CarContainer = props => {
     mapCars(cars);
   }, [cars]);
 
-  const mapCars = (data) => {
+  const mapCars = data => {
     if (data?.length > 0) {
       const cars = data.map((v, i) => {
         return <CarCard car={v} key={v._id} />;
@@ -46,7 +46,6 @@ const CarContainer = props => {
   const getAllCategories = () => {
     axios.get("/carrental/cartypes")
     .then((res) => {
-      console.log(res);
       setAllCategories(res.data)
     }).catch((err) => {
       console.log(err);
@@ -63,7 +62,6 @@ const CarContainer = props => {
     console.log(e.target.value)
     axios.get("/carrental/cars/" + e.target.value)
     .then((res) => {
-      console.log(res);
       mapCars(res.data);
     }).catch((err) => {
       console.log(err);
