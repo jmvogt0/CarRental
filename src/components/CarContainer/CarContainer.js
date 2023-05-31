@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadCars } from '../../reducer/reducer';
 
 const CarContainer = props => {
-  let cars = useSelector((state) => {return state.cars})
+  let cars = useSelector((state) => { return state.cars })
   const dispatch = useDispatch();
 
   const [allCategories, setAllCategories] = useState();
@@ -15,7 +15,7 @@ const CarContainer = props => {
   useEffect(() => {
     dispatch(loadCars())
     getAllCategories()
-  },[dispatch])
+  }, [dispatch])
 
   useEffect(() => {
     mapCars(cars);
@@ -34,22 +34,22 @@ const CarContainer = props => {
 
   const onLogout = () => {
     axios.post("/logout")
-    .then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      })
   }
 
   // Categories
 
   const getAllCategories = () => {
     axios.get("/carrental/cartypes")
-    .then((res) => {
-      setAllCategories(res.data)
-    }).catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        setAllCategories(res.data)
+      }).catch((err) => {
+        console.log(err);
+      })
   }
 
   const categories = allCategories?.map((v, i) => {
@@ -61,11 +61,25 @@ const CarContainer = props => {
   const onCategoryChange = (e) => {
     console.log(e.target.value)
     axios.get("/carrental/cars/" + e.target.value)
-    .then((res) => {
-      mapCars(res.data);
-    }).catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        mapCars(res.data);
+      }).catch((err) => {
+        console.log(err);
+      })
+  }
+
+  const onSearchInputChange = (e) => {
+    if (e.target.value !== "") {
+      axios.get("/carrental/search?tags=" + e.target.value)
+      .then((res) => {
+        mapCars(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else {
+      dispatch(loadCars());
+    }
   }
 
   return (
@@ -79,7 +93,7 @@ const CarContainer = props => {
       </div>
       <div className='content__filters'>
         <div>
-          <input type="text" placeholder='Suche'/>
+          <input type="text" placeholder='Suche' onChange={onSearchInputChange} />
           <select name="categories" id="1" onChange={onCategoryChange}>
             <option></option>
             {categories}
