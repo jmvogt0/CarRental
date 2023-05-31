@@ -9,7 +9,6 @@ import axios from '../../../src/axiosUrl';
 
 const CarDetail = ({ carID }) => {
   const car = useSelector((state) => { return state.car })
-  console.log(car);
   const dispatch = useDispatch();
 
   const { rentalId } = useParams();

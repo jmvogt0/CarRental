@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from '../../../src/axiosUrl'
 import './Rental.css';
 
@@ -6,12 +6,19 @@ const Rental = props => {
   const [price, setPrice] = useState(0);
   const [brand, setBrand] = useState("");
   const [carmodel, setCarModel] = useState("");
+  const [cartype, setCartype] = useState("");
   const [kilometers, setKilometers] = useState(0);
   const [horsepower, sethorsepower] = useState(0);
   const [weight, setWeight] = useState(0);
   const [doors, setDoors] = useState(0);
   const [description, setDescription] = useState("");
   const [href, setHref] = useState("");
+
+  const [allCategories, setAllCategories] = useState();
+
+  useEffect(() => {
+    getAllCategories()
+  }, [])
 
   //onChange functions
   const onPriceChange = e => {
@@ -22,6 +29,9 @@ const Rental = props => {
   };
   const onCarModelChange = e => {
     setCarModel(e.target.value);
+  };
+  const onCartypeChange = e => {
+    setCartype(e.target.value);
   };
   const onKilometerChange = e => {
     setKilometers(e.target.value);
@@ -44,8 +54,7 @@ const Rental = props => {
 
   const onSave=()=> {
     let rentalObj = {
-      owner: "646b65be26cf7e1b72c40f22",
-      cartype: "646b75150bcdca0fdefca3d7",
+      cartype,
       price,
       brand,
       carmodel,
@@ -67,6 +76,21 @@ const Rental = props => {
     })
   }
 
+  const getAllCategories = () => {
+    axios.get("/carrental/cartypes")
+      .then((res) => {
+        setAllCategories(res.data)
+      }).catch((err) => {
+        console.log(err);
+      })
+  }
+
+  const categories = allCategories?.map((v, i) => {
+    return (
+      <option key={v._id} value={v._id}>{v.cartype}</option>
+    )
+  })
+
   return (
     <div>
       <p>Rental</p>
@@ -76,6 +100,11 @@ const Rental = props => {
       <input type="text" value={brand} onChange={onBrandChange}/>
       <p>Modell</p>
       <input type="text" value={carmodel} onChange={onCarModelChange}/>
+      <p>Typ</p>
+      <select value={cartype} id="1" onChange={onCartypeChange}>
+        <option></option>
+        {categories}
+      </select>
       <p>Kilometer</p>
       <input type="number" value={kilometers} onChange={onKilometerChange}/>
       <p>Leistung</p>

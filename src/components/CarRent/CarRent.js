@@ -33,7 +33,6 @@ const CarRent = (props) => {
     console.log("RENT NOW OR WALK LATER")
     axios.post("/carrental/rent", {
       rentalId: rentalId,
-      userId: '646b65be26cf7e1b72c40f22',
       name: name,
       date: date,
       price: car.price,
