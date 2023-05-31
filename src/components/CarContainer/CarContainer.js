@@ -106,6 +106,8 @@ const CarContainer = props => {
       <div className='content__footer'>
         <div className="content__footer__buttons">
           <a href="/newRental">Auto der Vermietung hinzufügen</a>
+          <a href="/rented">Autos die ich gemietet habe</a>
+          <a href="/lent">Autos die ich vermietet habe</a>
         </div>
       </div>
     </div>

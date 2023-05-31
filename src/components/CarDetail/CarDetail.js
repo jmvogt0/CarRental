@@ -1,9 +1,11 @@
 import './CarDetail.css';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { redirect, useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { loadCar } from '../../reducer/reducer';
+
+import axios from '../../../src/axiosUrl';
 
 const CarDetail = ({ carID }) => {
   const car = useSelector((state) => { return state.car })
@@ -18,7 +20,14 @@ const CarDetail = ({ carID }) => {
   }, [rentalId, dispatch])
 
   const onRent = () => {
-    console.log("RENT NOW")
+    console.log("RENT NOW OR WALK LATER")
+
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    url.pathname += "/rent";
+    const updatedUrl = url.toString();
+
+    window.location.href = updatedUrl;
   }
 
   return (

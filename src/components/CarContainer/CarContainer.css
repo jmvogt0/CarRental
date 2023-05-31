@@ -34,3 +34,8 @@
 .content__carArea {
   display: flex;
 }
+
+.content__footer__buttons {
+  display: flex;
+  flex-direction: column;
+}

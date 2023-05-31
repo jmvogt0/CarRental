@@ -9,6 +9,9 @@ import CarContainer from './components/CarContainer/CarContainer';
 import Rental from './components/Rental/Rental';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import CarHistory from './components/CarHistory/CarHistory';
+import CarRent from './components/CarRent/CarRent';
+import CarLent from './components/CarLent/CarLent';
 
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
@@ -36,8 +39,20 @@ const router = createBrowserRouter([
         element: <CarDetail />,
       },
       {
+        path:'/cars/:rentalId/rent',
+        element: <CarRent />,
+      },
+      {
         path:'/newRental',
         element: <Rental />,
+      },
+      {
+        path:'/rented',
+        element: <CarHistory />,
+      },
+      {
+        path:'/lent',
+        element: <CarLent />,
       },
     ]
   }
