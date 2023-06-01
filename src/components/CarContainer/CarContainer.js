@@ -10,7 +10,6 @@ const CarContainer = props => {
   let cars = useSelector((state) => { return state.car.cars })
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
-  console.log(isLoggedIn);
 
   const [allCategories, setAllCategories] = useState();
   const [allCars, setAllCars] = useState([]);
@@ -21,19 +20,16 @@ const CarContainer = props => {
   }, [dispatch])
 
   useEffect(() => {
-    console.log(cars);
     mapCars(cars);
   }, [cars]);
 
   const mapCars = data => {
-    console.log(data);
     if (data?.length > 0) {
       const cars = data.map((v, i) => {
         return <CarCard car={v} key={v._id} />;
       })
       setAllCars(cars)
     } else {
-      console.log("no cars");
       setAllCars([]);
     }
   }
@@ -66,7 +62,6 @@ const CarContainer = props => {
   })
 
   const onCategoryChange = (e) => {
-    console.log(e.target.value)
     axios.get("/carrental/cars/" + e.target.value)
       .then((res) => {
         mapCars(res.data);

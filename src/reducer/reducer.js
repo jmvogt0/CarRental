@@ -42,9 +42,6 @@ const initialLoginState = {
 const loginReducer = createReducer(initialLoginState, (builder) => {
   builder
   .addCase(setLoggedIn.type, (state, action) => {
-    console.log(initialLoginState);
-    console.log("nowLoggedIn");
-    console.log(action.payload);
     return {
       ...state,
       isLoggedIn: action.payload,
