@@ -17,8 +17,6 @@ const CarDetail = ({ carID }) => {
   }, [rentalId, dispatch])
 
   const onRent = () => {
-    console.log("RENT NOW OR WALK LATER")
-
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
     url.pathname += "/rent";

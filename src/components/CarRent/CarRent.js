@@ -11,7 +11,6 @@ import { loadCar } from '../../reducer/reducer';
 const CarRent = (props) => {
   const car = useSelector((state) => { return state.car })
   const dispatch = useDispatch();
-  console.log(car);
   const { rentalId } = useParams();
 
   const [date, setDate] = useState('');
