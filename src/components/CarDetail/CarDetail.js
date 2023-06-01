@@ -9,6 +9,8 @@ const CarDetail = ({ carID }) => {
   const car = useSelector((state) => { return state.car.car })
   const dispatch = useDispatch();
 
+  const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
+
   const { rentalId } = useParams();
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const CarDetail = ({ carID }) => {
         <p>Beschreibung: {car?.description}</p>
         <p>Mietdauer: {car?.rentedLength}</p>
       </div>
-      <button onClick={onRent}>Mieten</button>
+      {isLoggedIn? <button onClick={onRent}>Mieten</button> : <p>Bitte einloggen um zu mieten</p>}
     </div>
   );
 }

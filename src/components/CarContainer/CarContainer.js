@@ -89,13 +89,12 @@ const CarContainer = props => {
       <div className='content__header'>
         <h1>Carrental App</h1>
         <div className='content__header__buttons'>
-          <a href="/login" className='content__header__buttons__loginBtn'>Login</a>
-          <button className='content__header__buttons__logoutBtn' onClick={onLogout}>Logout</button>
+          {isLoggedIn ? <button className='content__header__buttons__logoutBtn' onClick={onLogout}>Logout</button> : <a href="/login" className='content__header__buttons__loginBtn'>Login</a>}
         </div>
       </div>
       <div className='content__filters'>
         <div>
-          <input type="text" placeholder='Suche' onChange={onSearchInputChange} />
+          {isLoggedIn ? <input type="text" placeholder='Suche' onChange={onSearchInputChange} /> : null}
           <select name="categories" id="1" onChange={onCategoryChange}>
             <option></option>
             {categories}
