@@ -2,10 +2,16 @@ import { useState } from 'react';
 import './Login.css';
 import axios from '../../../src/axiosUrl';
 import { redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoggedIn } from '../../actions/actions'
 
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
+  console.log(isLoggedIn);
 
   const onEmailChange = e => {
     setEmail(e.target.value);
@@ -20,6 +26,7 @@ const Login = props => {
       password,})
     .then((res)=>{
       console.log(res);
+      dispatch(setLoggedIn(true));
       window.location.replace("./");
     }).catch((err)=>{
       console.log(err);

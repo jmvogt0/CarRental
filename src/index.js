@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CarDetail from './components/CarDetail/CarDetail';
 import CarContainer from './components/CarContainer/CarContainer';
 import Rental from './components/Rental/Rental';
@@ -12,61 +12,31 @@ import SignUp from './components/SignUp/SignUp';
 import CarHistory from './components/CarHistory/CarHistory';
 import CarRent from './components/CarRent/CarRent';
 import CarLent from './components/CarLent/CarLent';
-
-import { configureStore } from '@reduxjs/toolkit';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './store/store';
 import { Provider } from 'react-redux';
-import rootReducer from "./reducer/reducer";
 
-const router = createBrowserRouter([
-  {
-    path:'/',
-    element: <App />,
-    children: [
-      {
-      index: true,
-      element: <CarContainer />
-      },
-      {
-        path:'/login',
-        element: <Login />,
-      },
-      {
-        path:'/signUp',
-        element: <SignUp />,
-      },
-      {
-        path:'/cars/:rentalId',
-        element: <CarDetail />,
-      },
-      {
-        path:'/cars/:rentalId/rent',
-        element: <CarRent />,
-      },
-      {
-        path:'/newRental',
-        element: <Rental />,
-      },
-      {
-        path:'/rented',
-        element: <CarHistory />,
-      },
-      {
-        path:'/lent',
-        element: <CarLent />,
-      },
-    ]
-  }
-])
-const store = configureStore({reducer: rootReducer});
+console.log(store.getState());
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <Provider store ={store}>
-    <RouterProvider router={router}/>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<CarContainer />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/cars/:rentalId" element={<CarDetail />} />
+            <Route path="/cars/:rentalId/rent" element={<CarRent />} />
+            <Route path="/newRental" element={<Rental />} />
+            <Route path="/rented" element={<CarHistory />} />
+            <Route path="/lent" element={<CarLent />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

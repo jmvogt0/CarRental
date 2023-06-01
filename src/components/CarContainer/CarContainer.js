@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react';
 import axios from '../../../src/axiosUrl';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadCars } from '../../reducer/reducer';
+import { setLoggedIn } from '../../actions/actions'
 
 const CarContainer = props => {
   let cars = useSelector((state) => { return state.cars })
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
+  console.log(isLoggedIn);
 
   const [allCategories, setAllCategories] = useState();
   const [allCars, setAllCars] = useState([]);
@@ -35,6 +38,7 @@ const CarContainer = props => {
   const onLogout = () => {
     axios.post("/logout")
       .then((res) => {
+        dispatch(setLoggedIn(false));
         console.log(res);
       }).catch((err) => {
         console.log(err);
