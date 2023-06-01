@@ -10,8 +10,6 @@ const Login = props => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
-
   const onEmailChange = e => {
     setEmail(e.target.value);
   }

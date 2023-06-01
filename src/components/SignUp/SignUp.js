@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import './SignUp.css';
 import axios from '../../../src/axiosUrl';
+import { useDispatch } from 'react-redux';
+import { setLoggedIn } from '../../actions/actions'
 
 const Register = props => {
+  const dispatch = useDispatch();
+
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [street, setStreet] = useState("");
@@ -53,6 +57,8 @@ const Register = props => {
       password,
       email,})
     .then((res)=>{
+      dispatch(setLoggedIn(true));
+      window.location.replace("./");
       console.log(res);
     }).catch((err)=>{
       console.log(err);

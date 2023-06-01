@@ -11,6 +11,8 @@
 
 .content__carArea {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .content__footer__buttons {
