@@ -1,14 +1,12 @@
 import './CarDetail.css';
 import { useEffect } from 'react';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { loadCar } from '../../reducer/reducer';
 
-import axios from '../../../src/axiosUrl';
-
 const CarDetail = ({ carID }) => {
-  const car = useSelector((state) => { return state.car })
+  const car = useSelector((state) => { return state.car.car })
   const dispatch = useDispatch();
 
   const { rentalId } = useParams();

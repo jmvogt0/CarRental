@@ -7,7 +7,7 @@ import { loadCars } from '../../reducer/reducer';
 import { setLoggedIn } from '../../actions/actions'
 
 const CarContainer = props => {
-  let cars = useSelector((state) => { return state.cars })
+  let cars = useSelector((state) => { return state.car.cars })
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
   console.log(isLoggedIn);
@@ -21,16 +21,19 @@ const CarContainer = props => {
   }, [dispatch])
 
   useEffect(() => {
+    console.log(cars);
     mapCars(cars);
   }, [cars]);
 
   const mapCars = data => {
+    console.log(data);
     if (data?.length > 0) {
       const cars = data.map((v, i) => {
         return <CarCard car={v} key={v._id} />;
       })
       setAllCars(cars)
     } else {
+      console.log("no cars");
       setAllCars([]);
     }
   }
