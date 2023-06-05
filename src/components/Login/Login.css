@@ -1,0 +1,36 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.pageContainer__LoginContainer {
+    swidth: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.pageContainer__LoginContainer input {
+    height: 50px;
+    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 5px;
+}
+
+.pageContainer__LoginContainer button {
+    margin-top: 50px;
+    height: 50px;
+    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pageContainer__LoginContainer button:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+   
+}

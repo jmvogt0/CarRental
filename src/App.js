@@ -12,6 +12,7 @@ function App() {
     axios.post("/logout")
       .then((res) => {
         dispatch(setLoggedIn(false));
+        window.location.replace("./");
         console.log(res);
       }).catch((err) => {
         console.log(err);
@@ -21,9 +22,14 @@ function App() {
   return (
     <div className='Content'>
       <div className='content__header'>
-        <h1>Carrental App</h1>
+        <a href='./' className='content__header__headline'><h1>Carrental App</h1></a>
         <div className='content__header__buttons'>
-          {isLoggedIn ? <button className='content__header__buttons__logoutBtn' onClick={onLogout}>Logout</button> : <a href="/login" className='content__header__buttons__loginBtn'>Login</a>}
+          {isLoggedIn ? 
+            <button className='content__header__buttons__logoutBtn' onClick={onLogout}>Logout</button>
+            :
+            <div className='content__header__buttons__loginBtn'>
+              <a href="/login" className='content__header__buttons__loginBtn__anker'>Login</a>
+            </div>}
         </div>
       </div>
       <Outlet />

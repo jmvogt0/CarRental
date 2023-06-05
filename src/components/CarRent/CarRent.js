@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadCar } from '../../reducer/reducer';
 
 const CarRent = (props) => {
-  const car = useSelector((state) => { return state.car })
+  const car = useSelector((state) => { return state.car.car })
   const dispatch = useDispatch();
   const { rentalId } = useParams();
 
@@ -60,7 +60,7 @@ const CarRent = (props) => {
         <p>Mietdauer: {car?.rentedLength}</p>
       </div>
       <input type="text" placeholder='Name' onChange={onNameChange}/>
-      <input type="number" placeholder='Datum' onChange={onDateChange}/>
+      <input type="date" placeholder='Datum' onChange={onDateChange}/>
       <button onClick={onRent}>Rent now!</button>
     </div>
   )

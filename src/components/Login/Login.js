@@ -31,14 +31,16 @@ const Login = props => {
   }
 
   return (
-    <div>
-      <p>Login</p>
-      <p>Username:</p>
-      <input type="text" value={email} onChange={onEmailChange} />
-      <p>Passwort:</p>
-      <input type="password" value={password} onChange={onPasswordChange} />
-      <button onClick={onLogin}>Login</button>
-      <p>Noch keinen Account? <a href="/signUp">sign up</a></p>
+    <div className='pageContainer'>
+      <div className='pageContainer__LoginContainer'>
+        <p>Login</p>
+        <p>Username:</p>
+        <input type="text" value={email} onChange={onEmailChange} />
+        <p>Passwort:</p>
+        <input type="password" value={password} onChange={onPasswordChange} />
+        <button onClick={onLogin}>Login</button>
+        <p>Noch keinen Account? <a href="/signUp">sign up</a></p>
+      </div>
     </div>
   );
 }

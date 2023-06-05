@@ -78,8 +78,8 @@ const CarContainer = props => {
     <div className='content'>
       <div className='content__filters'>
         <div>
-          {isLoggedIn ? <input type="text" placeholder='Suche' onChange={onSearchInputChange} /> : null}
-          <select name="categories" id="1" onChange={onCategoryChange}>
+          {isLoggedIn ? <input type="text" placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
+          <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
             <option></option>
             {categories}
           </select>
