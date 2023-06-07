@@ -12,7 +12,6 @@ const CarContainer = props => {
   const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
 
   const [allCategories, setAllCategories] = useState();
-  const [category, setCategory] = useState();
   const [allCars, setAllCars] = useState([]);
 
   const [searchValue, setSearchValue] = useState("");
@@ -117,23 +116,26 @@ const CarContainer = props => {
   return (
     <div className='content'>
       <div className='content__filters'>
-        <div>
+        <div className='content__filters__filter'>
           {isLoggedIn ? <input type="text"  placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
           {isLoggedIn ? <input type="date" placeholder='Datum' onChange={onDateInputChange} className='content__filters__searchinput'/> : null}
           <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
-            <option></option>
+            <option>Alle Autos</option>
             {categories}
           </select>
         </div>
+        {isLoggedIn ? 
+          <div className='content__filters__buttons'>
+            <a href="/rented">Historie</a>
+            <a href="/lent">meine Autos</a>  
+          </div>
+        : null}
       </div>
       <div className='content__carArea'>
         {allCars}
       </div>
       <div className='content__footer'>
         <div className="content__footer__buttons">
-          <a href="/newRental">Auto der Vermietung hinzufügen</a>
-          <a href="/rented">Autos die ich gemietet habe</a>
-          <a href="/lent">Autos die ich vermietet habe</a>
         </div>
       </div>
     </div>

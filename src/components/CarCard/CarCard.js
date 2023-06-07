@@ -1,6 +1,7 @@
 import './CarCard.css'
 
 const CarCard = car => {
+  console.log(car.car);
   return (
     <div className='card'>
       <a className='card__link' href={`/cars/${car.car._id}`}>

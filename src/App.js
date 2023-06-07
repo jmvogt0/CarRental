@@ -25,11 +25,17 @@ function App() {
         <a href='./' className='content__header__headline'><h1>Carrental App</h1></a>
         <div className='content__header__buttons'>
           {isLoggedIn ? 
-            <button className='content__header__buttons__logoutBtn' onClick={onLogout}>Logout</button>
+            <div className='content__header_buttons__group'>
+              <div className='content__header__buttons__group__newCarBtn'>
+                <a href="/newRental">Auto vermieten</a>
+              </div>
+              <button className='content__header__buttons__group__logoutBtn' onClick={onLogout}>Logout</button>
+            </div>
             :
             <div className='content__header__buttons__loginBtn'>
               <a href="/login" className='content__header__buttons__loginBtn__anker'>Login</a>
-            </div>}
+            </div>
+          }
         </div>
       </div>
       <Outlet />

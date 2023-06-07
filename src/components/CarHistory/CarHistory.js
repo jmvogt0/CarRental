@@ -21,11 +21,12 @@ const CarHistory = () => {
   const mapCars = data => {
     if (data?.length > 0) {
       const cars = data.map((v, i) => {
+        console.log(v);
         return (
-          <div>
-            <CarCard car={v} key={v._id} />
+          <div key={v._id}>
+            <CarCard car={v}/>
             <div>
-              <p>Gemietet von:</p>
+              <p>Gemietet am:</p>
               {mapRented(v.rented)}
             </div>
           </div>
@@ -41,10 +42,9 @@ const CarHistory = () => {
     if (data?.length > 0) {
       console.log(data);
       return data.map((v, i) => {
-        console.log(v.name);
         return (
-          <div>
-            <p>{v.date}</p>
+          <div key={v._id}>
+            <p>{new Date(v.date).toLocaleDateString()}</p>
           </div>)
       })
     } else {
