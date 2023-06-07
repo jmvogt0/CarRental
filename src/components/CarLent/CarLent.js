@@ -46,7 +46,7 @@ const CarLent = () => {
         console.log(v.name);
         return (
           <div>
-            <p>{v.name} {v.date}</p>
+            <p>{v.name} {new Date(v.date).toLocaleDateString()} </p>
           </div>)
       })
     } else {

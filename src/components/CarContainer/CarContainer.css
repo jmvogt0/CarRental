@@ -11,15 +11,17 @@
 
 .content__filters {
   width: 100%;
-  height: 50px;
+  height: 70px;
   background-color: rgba(0, 0, 0, 0.058);
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .content__filters__buttons {
   display: flex;
   column-gap: 10px;
+  height: 50px;
 }
 
 .content__filters__buttons a{
@@ -58,8 +60,11 @@
 }
 
 .content__carArea {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 10px;
   justify-content: space-between;
 }
 
