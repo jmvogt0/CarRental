@@ -33,7 +33,7 @@ const CarRent = (props) => {
     axios.post("/carrental/rent", {
       rentalId: rentalId,
       name: name,
-      date: date,
+      date: new Date(date).getTime(),
       price: car.price,
     })
     .then((res)=>{

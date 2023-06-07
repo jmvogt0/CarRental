@@ -12,7 +12,11 @@ const CarContainer = props => {
   const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
 
   const [allCategories, setAllCategories] = useState();
+  const [category, setCategory] = useState();
   const [allCars, setAllCars] = useState([]);
+
+  const [searchValue, setSearchValue] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     dispatch(loadCars())
@@ -55,6 +59,8 @@ const CarContainer = props => {
     axios.get("/carrental/cars/" + e.target.value)
       .then((res) => {
         mapCars(res.data);
+        setSearchValue("");
+        setDate("");
       }).catch((err) => {
         console.log(err);
       })
@@ -62,24 +68,46 @@ const CarContainer = props => {
 
   const onSearchInputChange = (e) => {
     if (e.target.value !== "") {
-      axios.get("/carrental/search?tags=" + e.target.value)
-      .then((res) => {
-        mapCars(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      const searchValue = e.target.value;
+      setSearchValue(searchValue);
+      onSearchAndDateInputChange(searchValue, date);
+      setCategory("");
     } else {
       dispatch(loadCars());
     }
   }
 
+  const onDateInputChange = (e) => {
+    if (e.target.value !== "") {
+      const date = e.target.value;
+      setDate(date);
+      onSearchAndDateInputChange(searchValue, date);
+      setCategory("");
+    } else {
+      dispatch(loadCars());
+    }
+  }
+
+  //Function which combines both filters
+  const onSearchAndDateInputChange = (searchValue, date) => {
+    date = new Date(date).getTime();
+    axios.get("/carrental/search?tags=" + searchValue + "&date=" + date)
+    .then((res) => {
+      mapCars(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+
   return (
     <div className='content'>
       <div className='content__filters'>
         <div>
-          {isLoggedIn ? <input type="text" placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
-          <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
+          {isLoggedIn ? <input type="text" value={searchValue} placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
+          {isLoggedIn ? <input type="date" value={date} placeholder='Datum' onChange={onDateInputChange} className='content__filters__searchinput'/> : null}
+          <select name="categories" id="1" value={category} onChange={onCategoryChange} className='content__filters__select'>
             <option></option>
             {categories}
           </select>
