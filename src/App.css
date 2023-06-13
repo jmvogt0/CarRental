@@ -5,10 +5,15 @@
 body {
   max-width: 1920px;
   margin: 0 auto;
+  background-image: url('./images/BGTest2.png');
+  background-color: #151515;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 * {
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .content__header {
@@ -19,19 +24,30 @@ body {
 
 .content__header__headline {
   text-decoration: none;
-  color: #000;
+  display: flex;
+  align-items: center;
 }
-
+.content__header__headline h1 {
+  font-size: 40px;
+  text-decoration: line-through;
+  text-transform: uppercase;
+  color: #FF0000;
+}
+.content__header__headline p {
+  color: #fff;
+  margin-left: 5px;
+  font-weight: bold;
+}
 .content__header__buttons {
   width: 310px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .content__header__buttons__loginBtn {
   width: 150px;
-  height: 50px;
+  height: 70px;
   cursor: pointer;
   box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -58,17 +74,21 @@ body {
 }
 
 .content__header__buttons__group__logoutBtn {
-  width: 150px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   cursor: pointer;
-  box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s;
-  border: none;
-  background-color: #fff;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+.content__header__buttons__group__logoutBtn svg{
+  width: 40px;
+  height: 40px;
+  fill: #fff;
 }
 
 .content__header__buttons__group__logoutBtn:hover {
@@ -76,17 +96,17 @@ body {
 }
 
 .content__header__buttons__group__newCarBtn {
-  width: 150px;
-  height: 50px;
+  width: 300px;
+  height: 70px;
   cursor: pointer;
-  box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s;
   border: none;
-  background-color: #ff9b3d;
+  border: 1px solid #fff;
+  background-color: #FF0000;
 }
 
 .content__header__buttons__group__newCarBtn:hover {
@@ -95,5 +115,7 @@ body {
 
 .content__header__buttons__group__newCarBtn a {
   text-decoration: none;
-  color: #000;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
 }

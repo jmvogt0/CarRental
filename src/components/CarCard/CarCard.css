@@ -1,12 +1,46 @@
 .card{
     width: 300px;
-    border-radius: 5px;
-    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
+    /*height: 430px;*/
+    border-radius: 10px;
     min-width: 300px;
+    backdrop-filter: blur(30px) brightness(0.8);
+    border: 1px solid #606060;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
 }
 .card__link {
     text-decoration: none;
     color: black;
+}
+.card p{
+    color: #fff;
+}
+.card__textContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 10px 0 10px;
+    font-size: 20px;
+}
+.card__textContainer__headline {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+}
+.card__textContainer__textline {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0 5px 0;
+}
+.card__textContainer__price {
+    font-weight: bold;
+}
+.card__textContainer__textline p {
+    margin: 0;
 }
 .card__link__carImage{
     height: 200px;
@@ -14,6 +48,23 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     object-fit: cover;
+}
+
+.card__button__container {
+    width: 280px;
+    height: 50px;
+    background-color: #FFC227;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.card__button {
+    text-decoration: none;
+    color: #000;
+    font-weight: medium;
+    font-size: 20px;
 }
 
 img::before{

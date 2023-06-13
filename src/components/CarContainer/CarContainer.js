@@ -29,7 +29,7 @@ const CarContainer = props => {
   const mapCars = data => {
     if (data?.length > 0) {
       const cars = data.map((v, i) => {
-        return <CarCard car={v} key={v._id} />;
+        return <CarCard car={v} key={v._id} hideBtn={false}/>;
       })
       setAllCars(cars)
     } else {
@@ -120,7 +120,7 @@ const CarContainer = props => {
           {isLoggedIn ? <input type="text"  placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
           {isLoggedIn ? <input type="date" placeholder='Datum' onChange={onDateInputChange} className='content__filters__searchinput'/> : null}
           <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
-            <option>Alle Autos</option>
+            <option></option>
             {categories}
           </select>
         </div>

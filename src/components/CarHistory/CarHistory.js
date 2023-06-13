@@ -24,7 +24,7 @@ const CarHistory = () => {
         console.log(v);
         return (
           <div key={v._id}>
-            <CarCard car={v}/>
+            <CarCard car={v} hideBtn={true}/>
             <div>
               <p>Gemietet am:</p>
               {mapRented(v.rented)}

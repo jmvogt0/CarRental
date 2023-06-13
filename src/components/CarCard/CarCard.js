@@ -1,19 +1,22 @@
 import './CarCard.css'
 
-const CarCard = car => {
-  console.log(car.car);
+const CarCard = (props) => {
+  const hideBtn = props.hideBtn;
+  const car = props.car;
   return (
     <div className='card'>
-      <a className='card__link' href={`/cars/${car.car._id}`}>
-        <img className="card__link__carImage" src={car.car.href} alt="Auto" />
-        <p>Brand: {car.car.brand}</p>
-        <p>Modell: {car.car.carmodel}</p>
-        <p>Preis: {car.car.price} €</p>
-        <p>Kilometer: {car.car.kilometers}</p>
-        <p>PS: {car.car.horsepower}</p>
-        <p>Gewicht: {car.car.weight}</p>
-        <p>Türen: {car.car.doors}</p>
-      </a>
+      <img className="card__link__carImage" src={car.href} alt="Auto" />
+      <div className='card__textContainer'>
+        <p className="card__textContainer__headline">{car.brand} {car.carmodel}</p>
+        <div className="card__textContainer__textline"><p>{car.horsepower} ps</p><p>{car.weight} kg</p></div>
+        <div className='card__textContainer__textline'><p>{car.kilometers} km</p><p>{car.doors} Türen</p></div>
+        <p className='card__textContainer__price'>{car.price} € / Tag</p>
+        
+       
+      </div>
+      {hideBtn === false ? <div className="card__button__container">
+        <a href={`/cars/${car._id}`} className="card__button">Verfügbarkeit prüfen</a>
+      </div> : null}
     </div>
   );
 }
