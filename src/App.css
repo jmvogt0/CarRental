@@ -55,6 +55,7 @@ body {
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s;
+  border: 1px solid #fff;
 }
 
 .content__header__buttons__loginBtn:hover {
@@ -63,7 +64,7 @@ body {
 
 .content__header__buttons__loginBtn__anker {
   text-decoration: none;
-  color: #000;
+  color: #fff;
 }
 
 .content__header_buttons__group{
