@@ -1,22 +1,22 @@
 import './CarHistory.css';
 
 import { useEffect, useState } from 'react';
-import axios from '../../../src/axiosUrl';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadHistory } from '../../reducer/reducer';
 import CarCard from '../CarCard/CarCard';
 
 const CarHistory = () => {
+  let cars = useSelector((state) => { return state.car.carHistory })
+  const dispatch = useDispatch();
   const [allCars, setAllCars] = useState([]);
+
   useEffect(() => {
-    const carHistoryUrl = `/carrental/rented`;
-    axios.get(carHistoryUrl)
-    .then((res) => {
-      console.log(res.data);
-      mapCars(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }, [])
+    dispatch(loadHistory())
+  }, [dispatch])
+
+  useEffect(() => {
+    mapCars(cars);
+  }, [cars]);
 
   const mapCars = data => {
     if (data?.length > 0) {

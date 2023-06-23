@@ -1,24 +1,22 @@
 import './CarLent.css';
 
 import { useEffect, useState } from 'react';
-import axios from '../../../src/axiosUrl';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { loadLentHistory } from '../../reducer/reducer';
 import CarCard from '../CarCard/CarCard';
 
 const CarLent = () => {
+  let cars = useSelector((state) => { return state.car.lentHistory })
+  const dispatch = useDispatch();
   const [allCars, setAllCars] = useState([]);
+
   useEffect(() => {
-    const carHistoryUrl = `/carrental/lent`;
-    axios.get(carHistoryUrl)
-    .then((res) => {
-      console.log(res.data);
-      //setAllCars(res.data);
-      mapCars(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }, [])
+    dispatch(loadLentHistory())
+  }, [dispatch])
+
+  useEffect(() => {
+    mapCars(cars);
+  }, [cars]);
 
   const mapCars = data => {
     if (data?.length > 0) {
@@ -41,9 +39,7 @@ const CarLent = () => {
 
   const mapRented = data => {
     if (data?.length > 0) {
-      console.log(data);
       return data.map((v, i) => {
-        console.log(v.name);
         return (
           <div>
             <p>{v.name} {new Date(v.date).toLocaleDateString()} </p>

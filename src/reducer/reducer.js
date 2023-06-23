@@ -11,11 +11,23 @@ export const loadCar = createAsyncThunk("/car", async (carUrl) => {
   return res.data;
 });
 
+export const loadHistory = createAsyncThunk("/carHistory", async () => {
+  const res = await axios.get("/carrental/rented")
+  return res.data;
+});
+
+export const loadLentHistory = createAsyncThunk("/lentHistory", async () => {
+  const res = await axios.get("/carrental/lent")
+  return res.data;
+});
+
 export const setLoggedIn = createAction("login/SET_LOGGED_IN");
 
 const initialCarState = {
   cars: [],
   car: null,
+  carHistory: [],
+  lentHistory: [],
 };
 
 const carReducer = createReducer(initialCarState, (builder) => {
@@ -31,7 +43,19 @@ const carReducer = createReducer(initialCarState, (builder) => {
         ...state,
         car: action.payload,
       };
-    });
+    })
+    .addCase(loadHistory.fulfilled, (state, action) => {
+      return {
+        ...state,
+        carHistory: action.payload,
+      };
+    })
+    .addCase(loadLentHistory.fulfilled, (state, action) => {
+      return {
+        ...state,
+        lentHistory: action.payload,
+      };
+    })
 });
 
 const initialLoginState = {
