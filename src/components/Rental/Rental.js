@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from '../../../src/axiosUrl'
+import { loadCarCategories } from '../../reducer/reducer';
 import './Rental.css';
 
 const Rental = props => {
+  let allCategories = useSelector((state) => { return state.car.carCategories })
+  const dispatch = useDispatch();
+
   const [price, setPrice] = useState(0);
   const [brand, setBrand] = useState("");
   const [carmodel, setCarModel] = useState("");
@@ -14,11 +19,9 @@ const Rental = props => {
   const [description, setDescription] = useState("");
   const [href, setHref] = useState("");
 
-  const [allCategories, setAllCategories] = useState();
-
   useEffect(() => {
-    getAllCategories()
-  }, [])
+    dispatch(loadCarCategories())
+  }, [dispatch])
 
   //onChange functions
   const onPriceChange = e => {
@@ -74,15 +77,6 @@ const Rental = props => {
     }).catch((err) => {
       console.log(err);
     })
-  }
-
-  const getAllCategories = () => {
-    axios.get("/carrental/cartypes")
-      .then((res) => {
-        setAllCategories(res.data)
-      }).catch((err) => {
-        console.log(err);
-      })
   }
 
   const categories = allCategories?.map((v, i) => {

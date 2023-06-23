@@ -1,17 +1,15 @@
 import './CarContainer.css'
 import CarCard from "../CarCard/CarCard";
 import { useState, useEffect } from 'react';
-import axios from '../../../src/axiosUrl';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadCars } from '../../reducer/reducer';
-import { setLoggedIn } from '../../actions/actions'
+import { loadCars, loadCarCategories, loadSearchCar, loadCategoryChange } from '../../reducer/reducer';
 
 const CarContainer = props => {
   let cars = useSelector((state) => { return state.car.cars })
+  let allCategories = useSelector((state) => { return state.car.carCategories })
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => { return state.login.isLoggedIn })
 
-  const [allCategories, setAllCategories] = useState();
   const [allCars, setAllCars] = useState([]);
 
   const [searchValue, setSearchValue] = useState("");
@@ -19,7 +17,7 @@ const CarContainer = props => {
 
   useEffect(() => {
     dispatch(loadCars())
-    getAllCategories()
+    dispatch(loadCarCategories())
   }, [dispatch])
 
   useEffect(() => {
@@ -37,17 +35,6 @@ const CarContainer = props => {
     }
   }
 
-  // Categories
-
-  const getAllCategories = () => {
-    axios.get("/carrental/cartypes")
-      .then((res) => {
-        setAllCategories(res.data)
-      }).catch((err) => {
-        console.log(err);
-      })
-  }
-
   const categories = allCategories?.map((v, i) => {
     return (
       <option key={v._id} value={v._id}>{v.cartype}</option>
@@ -55,12 +42,7 @@ const CarContainer = props => {
   })
 
   const onCategoryChange = (e) => {
-    axios.get("/carrental/cars/" + e.target.value)
-      .then((res) => {
-        mapCars(res.data);
-      }).catch((err) => {
-        console.log(err);
-      })
+    dispatch(loadCategoryChange(e.target.value));
   }
 
   const onSearchInputChange = (e) => {
@@ -87,30 +69,12 @@ const CarContainer = props => {
   const onSearchAndDateInputChange = (searchValue, date) => {
     if (searchValue !== "" && date !== "") {
       date = new Date(date).getTime();
-      axios.get("/carrental/search?tags=" + searchValue + "&date=" + date)
-      .then((res) => {
-        mapCars(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-    });
+      dispatch(loadSearchCar("?tags=" + searchValue + "&date=" + date));
     } else if (searchValue !== "" && date === "") {
-      axios.get("/carrental/search?tags=" + searchValue)
-      .then((res) => {
-        mapCars(res.data);
-      }
-      ).catch((err) => {
-        console.log(err);
-      });
+      dispatch(loadSearchCar("?tags=" + searchValue));
     } else if (searchValue === "" && date !== "") {
       date = new Date(date).getTime();
-      axios.get("/carrental/search?date=" + date)
-      .then((res) => {
-        mapCars(res.data);
-      }
-      ).catch((err) => {
-        console.log(err);
-      });
+      dispatch(loadSearchCar("?date=" + date));
     }
   }
   return (

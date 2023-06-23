@@ -21,6 +21,21 @@ export const loadLentHistory = createAsyncThunk("/lentHistory", async () => {
   return res.data;
 });
 
+export const loadCarCategories = createAsyncThunk("/carCategories", async () => {
+  const res = await axios.get("/carrental/cartypes")
+  return res.data;
+});
+
+export const loadSearchCar = createAsyncThunk("/searchCar", async (searchValue) => {
+  const res = await axios.get("/carrental/search" + searchValue)
+  return res.data;
+});
+
+export const loadCategoryChange = createAsyncThunk("/categoryChange", async (category) => {
+  const res = await axios.get("/carrental/cars/" + category)
+  return res.data;
+});
+
 export const setLoggedIn = createAction("login/SET_LOGGED_IN");
 
 const initialCarState = {
@@ -28,6 +43,8 @@ const initialCarState = {
   car: null,
   carHistory: [],
   lentHistory: [],
+  carCategories: [],
+  
 };
 
 const carReducer = createReducer(initialCarState, (builder) => {
@@ -54,6 +71,24 @@ const carReducer = createReducer(initialCarState, (builder) => {
       return {
         ...state,
         lentHistory: action.payload,
+      };
+    })
+    .addCase(loadCarCategories.fulfilled, (state, action) => {
+      return {
+        ...state,
+        carCategories: action.payload,
+      };
+    })
+    .addCase(loadSearchCar.fulfilled, (state, action) => {
+      return {
+        ...state,
+        cars: action.payload,
+      };
+    })
+    .addCase(loadCategoryChange.fulfilled, (state, action) => {
+      return {
+        ...state,
+        cars: action.payload,
       };
     })
 });
