@@ -1,0 +1,13 @@
+.carHistoryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+    margin: 50px;
+}
+
+@media screen and (max-width: 1699px){
+    .carHistoryContainer {
+        justify-content: center;
+    }
+}
