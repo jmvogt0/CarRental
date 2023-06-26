@@ -1,3 +1,42 @@
 p {
     color: #fff;
 }
+
+.carDetail__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    backdrop-filter: blur(30px) brightness(0.8);
+    border-radius: 5px;
+}
+.carDetail__container img {
+    width: 100%;
+}
+.carDetail__container__headline {
+    font-size: 30px;
+    font-weight: bold;
+}
+.carDetail__textContainer {
+    padding: 10px;
+}
+.carDetail__actionBtn {
+    width: 280px;
+    height: 50px;
+    background-color: #FFC227;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .carDetail__container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 100px;
+    }
+    .carDetail__actionBtn {
+        align-self: center;
+    }
+}

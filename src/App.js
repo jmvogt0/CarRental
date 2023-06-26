@@ -22,7 +22,7 @@ function App() {
   return (
     <div className='Content'>
       <div className='content__header'>
-        <a href='./' className='content__header__headline'><h1>Carrental</h1><p>rent now or walk later</p></a>
+        <a href='/' className='content__header__headline'><h1>Carrental</h1><p>rent now or walk later</p></a>
         <div className='content__header__buttons'>
           {isLoggedIn ? 
             <div className='content__header_buttons__group'>

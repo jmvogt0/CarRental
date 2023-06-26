@@ -79,22 +79,24 @@ const CarContainer = props => {
   }
   return (
     <div className='content'>
-      <div className='content__filters'>
-        <div className='content__filters__filter'>
-          {isLoggedIn ? <input type="text"  placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
-          {isLoggedIn ? <input type="date" placeholder='Datum' onChange={onDateInputChange} className='content__filters__searchinput'/> : null}
-          <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
-            <option></option>
-            {categories}
-          </select>
-        </div>
-        {isLoggedIn ? 
-          <div className='content__filters__buttons'>
-            <a href="/rented">Historie</a>
-            <a href="/lent">meine Autos</a>  
+      <div className='content__filters__container'>
+        <div className="content__filters">
+          <div className='content__filters__filter'>
+            {isLoggedIn ? <input type="text"  placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
+            {isLoggedIn ? <input type="date" placeholder='Datum' onChange={onDateInputChange} className='content__filters__searchinput'/> : null}
+            <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
+              <option></option>
+              {categories}
+            </select>
           </div>
-        : null}
-      </div>
+          {isLoggedIn ? 
+            <div className='content__filters__buttons'>
+              <a href="/rented">Historie</a>
+              <a href="/lent">meine Autos</a>  
+            </div>
+          : null}
+        </div>
+        </div>
       <div className='content__carArea'>
         {allCars}
       </div>

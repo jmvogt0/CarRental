@@ -86,8 +86,8 @@ const Rental = props => {
   })
 
   return (
-    <div>
-      <p>Rental</p>
+    <div className="rentalContainer">
+      <p className='rentalContainer__headline'>Auto der Vermietung hinzufügen</p>
       <p>Preis</p>
       <input type="number" value={price} onChange={onPriceChange}/>
       <p>Marke</p>
@@ -111,7 +111,7 @@ const Rental = props => {
       <textarea type="text" value={description} onChange={onDescriptionChange}/>
       <p>Bild-Url</p>
       <input type="text" value={href} onChange={onHrefChange}/>
-      <button onClick={onSave}>Speichern</button>
+      <button className="submitBtn" onClick={onSave}>Speichern</button>
     </div>
   );
 }

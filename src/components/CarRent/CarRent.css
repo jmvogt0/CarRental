@@ -1,0 +1,33 @@
+.rentContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    backdrop-filter: blur(30px) brightness(0.8);
+    border-radius: 5px;
+}
+.rentContainer img {
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.rentContainer__headline {
+    font-size: 30px;
+    font-weight: bold;
+}
+.rentContainer__textContainer {
+    padding: 10px;
+}
+.rentContainer input {
+    width: 280px;
+    height: 50px;
+}
+.rentContainer__actionBtn {
+    width: 280px;
+    height: 50px;
+    background-color: #FFC227;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}

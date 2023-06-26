@@ -1,0 +1,38 @@
+.submitBtn {
+  width: 280px;
+  height: 50px;
+  background-color: #FFC227;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.rentalContainer {
+  max-width: 1200px;
+  margin: 0 20px;
+  /*backdrop-filter: blur(30px) brightness(0.8);*/
+  border-radius: 5px;
+}
+
+.rentalContainer .rentalContainer__headline {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.rentalContainer input{
+  width: 100%;
+  height: 50px;
+  max-width: 400px;
+}
+
+.rentalContainer textarea{
+  width: 100%;
+  height: 100px;
+  max-width: 400px;
+}
+
+.rentalContainer select{
+  width: 100%;
+  height: 50px;
+  max-width: 400px;
+}

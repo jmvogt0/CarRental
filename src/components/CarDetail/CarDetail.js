@@ -28,22 +28,23 @@ const CarDetail = ({ carID }) => {
   }
 
   return (
-    <div>
-      <p>CarDetail</p>
-      <a href="/">Zurück zur Übersicht</a>
-      <div>
-        <img src={car?.href} alt="Auto" />
-        <p>Brand: {car?.brand}</p>
-        <p>Modell: {car?.carmodel}</p>
-        <p>Preis: {car?.price}</p>
-        <p>Kilometer: {car?.kilometers}</p>
-        <p>PS: {car?.horsepower}</p>
-        <p>Gewicht: {car?.weight}</p>
-        <p>Türen: {car?.doors}</p>
-        <p>Beschreibung: {car?.description}</p>
-        <p>Mietdauer: {car?.rentedLength}</p>
+    <div class="carDetail__container">
+      <img src={car?.href} alt="Auto" />
+      <div className='carDetail__textContainer'>
+        <div>
+          <p className="carDetail__container__headline">{car?.brand} {car?.carmodel}</p>
+          <p>{car?.price} € / Tag</p>
+        </div>
+        
+        
+        <p>{car?.kilometers} KM</p>
+        <p>{car?.horsepower} PS</p>
+        <p>{car?.weight} KG</p>
+        <p>{car?.doors} Türen</p>
+        <p>Beschreibung:</p>
+        <p>{car?.description}</p>
       </div>
-      {isLoggedIn? <button onClick={onRent}>Mieten</button> : <p>Bitte einloggen um zu mieten</p>}
+      {isLoggedIn? <button className="carDetail__actionBtn" onClick={onRent}> Jetzt Mieten !</button> : <p>Bitte einloggen um zu mieten</p>}
     </div>
   );
 }

@@ -27,6 +27,17 @@ body {
   display: flex;
   align-items: center;
 }
+@media screen and (max-width: 759px) {
+  .content__header__headline {
+    display: none;
+  }
+  .content__header {
+    margin: 10px 20px;
+  }
+  .content__header__buttons {
+    width: 100% !important;
+  }
+}
 .content__header__headline h1 {
   font-size: 40px;
   text-decoration: line-through;

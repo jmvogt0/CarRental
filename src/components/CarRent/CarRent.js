@@ -45,23 +45,22 @@ const CarRent = (props) => {
   }
 
   return (
-    <div>
-      <p>Rent now or Walk later!</p>
-      <div>
-        <img src={car?.href} alt="Auto" />
-        <p>Brand: {car?.brand}</p>
-        <p>Modell: {car?.carmodel}</p>
-        <p>Preis: {car?.price}</p>
-        <p>Kilometer: {car?.kilometers}</p>
-        <p>PS: {car?.horsepower}</p>
-        <p>Gewicht: {car?.weight}</p>
-        <p>Türen: {car?.doors}</p>
-        <p>Beschreibung: {car?.description}</p>
+    <div className="rentContainer">
+      <img src={car?.href} alt="Auto" />
+      <div className="rentContainer__textContainer">
+        <p className='rentContainer__headline'>{car?.brand} {car?.carmodel}</p>
+        <p>{car?.price} € / Tag</p>
+        <p>{car?.kilometers} KM</p>
+        <p>{car?.horsepower} PS</p>
+        <p>{car?.weight} KG</p>
+        <p>{car?.doors} Türen</p>
+        <p>Beschreibung:</p>
+        <p>{car?.description}</p>
         <p>Mietdauer: {car?.rentedLength}</p>
+        <input type="text" placeholder='Name' onChange={onNameChange}/>
+        <input type="date" placeholder='Datum' onChange={onDateChange}/>
+        <button className="rentContainer__actionBtn" onClick={onRent}>Reservierung abschließen</button>
       </div>
-      <input type="text" placeholder='Name' onChange={onNameChange}/>
-      <input type="date" placeholder='Datum' onChange={onDateChange}/>
-      <button onClick={onRent}>Rent now!</button>
     </div>
   )
 };
