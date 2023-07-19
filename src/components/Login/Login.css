@@ -22,19 +22,9 @@
 }
 
 .pageContainer__LoginContainer button {
-    margin-top: 50px;
-    height: 50px;
-    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
+    margin-top: 30px;
+    width: 100%;
     border: none;
-    border-radius: 5px;
-    background-color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.pageContainer__LoginContainer button:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-   
 }
 
 .pageContainer__LoginContainer a {

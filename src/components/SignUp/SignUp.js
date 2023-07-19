@@ -87,7 +87,7 @@ const Register = props => {
         <input type="password" value={password} onChange={onPasswordChange} />
         <p>Email</p>
         <input type="email" value={email} onChange={onEmailChange}/>
-        <button onClick={onSignup}>Registrieren</button>
+        <button className="actionBtn" onClick={onSignup}>Registrieren</button>
       </div>
     </div>
   );

@@ -59,6 +59,7 @@
 }
 .content__filters__buttons a:hover{
   background-color: rgba(0, 0, 0, 0.058);
+  color: #fff;
 }
 
 .content__filters__searchinput {

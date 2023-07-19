@@ -7,7 +7,7 @@ const CarHistoryCard = (props) => {
       return data.map((v, i) => {
         return (
           <div className="history__table__row">
-            <p>{v.name}</p><p>{new Date(v.date).toLocaleDateString()} </p>
+            <p>{new Date(v.date).toLocaleDateString()}</p><p>{v.name}</p>
           </div>)
       })
     } else {
@@ -24,7 +24,7 @@ const CarHistoryCard = (props) => {
         <p className='card__textContainer__price'>{car.price} € / Tag</p>
       </div>
       <div className="carHistoryCard__historyContainer">
-        <div className='history__table__row'><p className='redText'>Name</p><p className='redText'>Datum</p></div>
+        <div className='history__table__row'><p className='redText'>Datum</p><p className='redText'>Name</p></div>
         {mapRented(car.rented)}
       </div>
     </div>

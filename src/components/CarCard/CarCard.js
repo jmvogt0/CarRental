@@ -14,9 +14,8 @@ const CarCard = (props) => {
         
        
       </div>
-      {hideBtn === false ? <div className="card__button__container">
-        <a href={`/cars/${car._id}`} className="card__button">Verfügbarkeit prüfen</a>
-      </div> : null}
+      {hideBtn === false ? 
+        <a href={`/cars/${car._id}`} className="actionBtn">Verfügbarkeit prüfen</a> : null}
     </div>
   );
 }

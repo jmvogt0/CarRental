@@ -38,7 +38,7 @@ const Login = props => {
         <input type="text" value={email} onChange={onEmailChange} />
         <p>Passwort:</p>
         <input type="password" value={password} onChange={onPasswordChange} />
-        <button onClick={onLogin}>Login</button>
+        <button className="actionBtn" onClick={onLogin}>Login</button>
         <p>Noch keinen Account? <a href="/signUp">sign up</a></p>
       </div>
     </div>

@@ -131,3 +131,21 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
+
+.actionBtn {
+  width: 280px;
+  height: 50px;
+  background-color: #FFC227;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #000;
+  font-weight: medium;
+  font-size: 20px;
+  &:hover {
+      background-color: #d5a428;
+      cursor: pointer;
+  }
+}

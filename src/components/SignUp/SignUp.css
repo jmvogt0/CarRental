@@ -10,7 +10,8 @@
     box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
-    background-color: azure;
+    backdrop-filter: blur(30px) brightness(0.8);
+    border: 1px solid #606060;
 }
 
 .pageContainer__signupContainer input {
@@ -21,17 +22,7 @@
 }
 
 .pageContainer__signupContainer button {
-    margin-top: 50px;
-    height: 50px;
-    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.25);
+    margin-top: 30px;
+    width: 100%;
     border: none;
-    border-radius: 5px;
-    background-color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.pageContainer__signupContainer button:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-   
 }
