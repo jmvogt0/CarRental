@@ -8,6 +8,7 @@ import { setLoggedIn } from '../../actions/actions'
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const dispatch = useDispatch();
 
   const onEmailChange = e => {
@@ -15,6 +16,10 @@ const Login = props => {
   }
   const onPasswordChange = e => {
     setPassword(e.target.value);
+  }
+
+  const onErrorMsgChange = err => {
+    setErrorMsg(err.response.data);
   }
 
   const onLogin=()=> {
@@ -26,6 +31,7 @@ const Login = props => {
       dispatch(setLoggedIn(true));
       window.location.replace("./");
     }).catch((err)=>{
+      onErrorMsgChange(err);
       console.log(err);
     });
   }
@@ -39,6 +45,7 @@ const Login = props => {
         <p>Passwort:</p>
         <input type="password" value={password} onChange={onPasswordChange} />
         <button className="actionBtn" onClick={onLogin}>Login</button>
+        <p className="errorMsg"> {errorMsg} </p>
         <p>Noch keinen Account? <a href="/signUp">sign up</a></p>
       </div>
     </div>

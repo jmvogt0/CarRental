@@ -19,6 +19,8 @@ const Rental = props => {
   const [description, setDescription] = useState("");
   const [href, setHref] = useState("");
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   useEffect(() => {
     dispatch(loadCarCategories())
   }, [dispatch])
@@ -55,6 +57,10 @@ const Rental = props => {
     setHref(e.target.value);
   };
 
+  const onErrorMsgChange = err => {
+    setErrorMsg(err.response.data);
+  }
+
   const onSave=()=> {
     let rentalObj = {
       cartype,
@@ -75,6 +81,7 @@ const Rental = props => {
       window.location.replace("./");
       console.log(res);
     }).catch((err) => {
+      onErrorMsgChange(err);
       console.log(err);
     })
   }
@@ -111,7 +118,8 @@ const Rental = props => {
       <textarea type="text" value={description} onChange={onDescriptionChange}/>
       <p>Bild-Url</p>
       <input type="text" value={href} onChange={onHrefChange}/>
-      <button className="submitBtn" onClick={onSave}>Speichern</button>
+      <button className="actionBtn" onClick={onSave}>Speichern</button>
+      <p className="errorMsg"> {errorMsg} </p>
     </div>
   );
 }

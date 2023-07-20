@@ -16,6 +16,8 @@ const CarRent = (props) => {
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
 
+  const [errorMsg, setErrorMsg] = useState('');
+
   useEffect(() => {
     const carUrl = `/carrental/car/${rentalId}`;
     dispatch(loadCar(carUrl))
@@ -26,6 +28,10 @@ const CarRent = (props) => {
   }
   const onNameChange = (e) => {
     setName(e.target.value);
+  }
+
+  const onErrorMsgChange = err => {
+    setErrorMsg(err.response.data);
   }
 
   const onRent = () => {
@@ -40,6 +46,7 @@ const CarRent = (props) => {
       console.log(res);
       window.location.replace("/");
     }).catch((err)=>{
+      onErrorMsgChange(err);
       console.log(err);
     });
   }
@@ -60,6 +67,7 @@ const CarRent = (props) => {
         <input type="text" placeholder='Name' onChange={onNameChange}/>
         <input type="date" placeholder='Datum' onChange={onDateChange}/>
         <button className="rentContainer__actionBtn" onClick={onRent}>Reservierung abschließen</button>
+        <p className="errorMsg"> {errorMsg} </p>
       </div>
     </div>
   )

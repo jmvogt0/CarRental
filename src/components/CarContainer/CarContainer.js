@@ -46,11 +46,13 @@ const CarContainer = props => {
   }
 
   const onSearchInputChange = (e) => {
+    console.log("searchValue: " + e.target.value);
     if (e.target.value !== "") {
       const searchValue = e.target.value;
       setSearchValue(searchValue);
       onSearchAndDateInputChange(searchValue, date);
     } else {
+      setSearchValue("");
       dispatch(loadCars());
     }
   }
@@ -61,20 +63,27 @@ const CarContainer = props => {
       setDate(date);
       onSearchAndDateInputChange(searchValue, date);
     } else {
+      setDate("");
       dispatch(loadCars());
     }
   }
 
   //Function which combines both filters
   const onSearchAndDateInputChange = (searchValue, date) => {
+    console.log("searchValue: " + searchValue + " date: " + date);
     if (searchValue !== "" && date !== "") {
+      console.log("both");
       date = new Date(date).getTime();
       dispatch(loadSearchCar("?tags=" + searchValue + "&date=" + date));
     } else if (searchValue !== "" && date === "") {
+      console.log("just searchValue");
       dispatch(loadSearchCar("?tags=" + searchValue));
     } else if (searchValue === "" && date !== "") {
       date = new Date(date).getTime();
+      console.log("just Date");
       dispatch(loadSearchCar("?date=" + date));
+    } else {
+      console.log("no filter");
     }
   }
   return (
@@ -82,8 +91,8 @@ const CarContainer = props => {
       <div className='content__filters__container'>
         <div className="content__filters">
           <div className='content__filters__filter'>
-            {isLoggedIn ? <input type="text"  placeholder='Suche' onChange={onSearchInputChange} className='content__filters__searchinput'/> : null}
-            {isLoggedIn ? <input type="date" placeholder='Datum' onChange={onDateInputChange} className='content__filters__searchinput'/> : null}
+            {isLoggedIn ? <input type="text"  placeholder='Suche' onInput={onSearchInputChange} className='content__filters__searchinput'/> : null}
+            {isLoggedIn ? <input type="date" placeholder='Datum' onInput={onDateInputChange} className='content__filters__searchinput'/> : null}
             <select name="categories" id="1" onChange={onCategoryChange} className='content__filters__select'>
               <option></option>
               {categories}

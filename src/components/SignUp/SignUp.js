@@ -17,6 +17,8 @@ const Register = props => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const onFirstnameChange = e => {
     setFirstname(e.target.value);
   }
@@ -45,6 +47,10 @@ const Register = props => {
     setEmail(e.target.value);
   }
 
+  const onErrorMsgChange = err => {
+    setErrorMsg(err.response.data);
+  }
+
   const onSignup = () => {
     axios.post("/signup/", {
       firstname,
@@ -61,6 +67,7 @@ const Register = props => {
       window.location.replace("./");
       console.log(res);
     }).catch((err)=>{
+      onErrorMsgChange(err);
       console.log(err);
     });
   }
@@ -88,6 +95,7 @@ const Register = props => {
         <p>Email</p>
         <input type="email" value={email} onChange={onEmailChange}/>
         <button className="actionBtn" onClick={onSignup}>Registrieren</button>
+        <p className="errorMsg"> {errorMsg} </p>
       </div>
     </div>
   );
