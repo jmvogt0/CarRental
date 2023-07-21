@@ -8,6 +8,8 @@ import axios from '../../../src/axiosUrl';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadCar } from '../../reducer/reducer';
 
+import CarCardDetail from '../carCardDetail/carCardDetail';
+
 const CarRent = (props) => {
   const car = useSelector((state) => { return state.car.car })
   const dispatch = useDispatch();
@@ -53,17 +55,8 @@ const CarRent = (props) => {
 
   return (
     <div className="rentContainer">
-      <img src={car?.href} alt="Auto" />
+      <CarCardDetail car={car} />
       <div className="rentContainer__textContainer">
-        <p className='rentContainer__headline'>{car?.brand} {car?.carmodel}</p>
-        <p>{car?.price} € / Tag</p>
-        <p>{car?.kilometers} KM</p>
-        <p>{car?.horsepower} PS</p>
-        <p>{car?.weight} KG</p>
-        <p>{car?.doors} Türen</p>
-        <p>Beschreibung:</p>
-        <p>{car?.description}</p>
-        <p>Mietdauer: {car?.rentedLength}</p>
         <input type="text" placeholder='Name' onChange={onNameChange}/>
         <input type="date" placeholder='Datum' onChange={onDateChange}/>
         <button className="rentContainer__actionBtn" onClick={onRent}>Reservierung abschließen</button>

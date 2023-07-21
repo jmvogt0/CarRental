@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadCar } from '../../reducer/reducer';
 
+import CarCardDetail from '../carCardDetail/carCardDetail';
+
 const CarDetail = ({ carID }) => {
   const car = useSelector((state) => { return state.car.car })
   const dispatch = useDispatch();
@@ -28,22 +30,8 @@ const CarDetail = ({ carID }) => {
   }
 
   return (
-    <div class="carDetail__container">
-      <img src={car?.href} alt="Auto" />
-      <div className='carDetail__textContainer'>
-        <div>
-          <p className="carDetail__container__headline">{car?.brand} {car?.carmodel}</p>
-          <p>{car?.price} € / Tag</p>
-        </div>
-        
-        
-        <p>{car?.kilometers} KM</p>
-        <p>{car?.horsepower} PS</p>
-        <p>{car?.weight} KG</p>
-        <p>{car?.doors} Türen</p>
-        <p>Beschreibung:</p>
-        <p>{car?.description}</p>
-      </div>
+    <div className="carDetail__container">
+      <CarCardDetail car={car} />
       {isLoggedIn? <button className="carDetail__actionBtn" onClick={onRent}> Jetzt Mieten !</button> : <p>Bitte einloggen um zu mieten</p>}
     </div>
   );
